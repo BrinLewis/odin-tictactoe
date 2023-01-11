@@ -16,8 +16,49 @@ const gameboardModule = (function () {
     });
   }
   renderBoard();
+
+  function makePlay(player, segment) {
+
+  }
 })();
 
-function player(name) {
-  return {};
-}
+
+const playersModule = (function () {
+  function createPlayer(name, marker) {
+    return {
+      name,
+      marker,
+    }
+  }
+  
+  const mark = createPlayer("mark", "X");
+  const john = createPlayer("john", "O");
+
+  return {
+    mark,
+    john,
+  }
+})();
+
+/*makePlay should go in gameModule but be accessible by the player objects so I 
+can call player.makePlay() */
+/* makePlay needs to get a reference to which board segment was clicked, then 
+change the text content of that segment to whatever the players marker is */
+
+/* clickHandler function to handle event listeners on the segments. On click 
+it should get the player who clicked it and create a variable referencing which
+segment was clicked, then run the makePlay function, using the player and segment
+as parameters*/
+
+/* 
+What Each Module Does
+  gameboardModule
+    -gameboard array
+    -render function to display the array on the browser in correct places
+    -makePlay function to update the array with the playmaker's marker and render it on browser
+  playersModule
+    -createPlayer function to create a player object with name, marker and shared makePlay method
+    -create the players, probably later on a button click with a name input
+  gameModule
+    -check for 3 in a row (winner) and announce winner, then reset board
+*/
