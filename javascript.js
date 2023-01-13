@@ -1,7 +1,3 @@
-// Store gameboard as array inside of a Gameboard object.
-// Players will be stored in objects
-// Will need object to control the flow of the game itself
-
 const gameboardModule = (function () {
   const gameboard = {
     board: [" ", " ", " ", " ", " ", " ", " ", " ", " "],
@@ -77,23 +73,48 @@ const playersModule = (function () {
 
 const gameModule = (function () {
   function checkWin(array) {
-    function winConditions(a, b, c) {
-      if (array[a] !== " " && array[a] === array[b] && array[a] === array[c]) {
-        setTimeout(function() {alert("Winner!")}, 300);
+    function isGameOver(condition) {
+      if (
+        array[condition[0]] !== " " &&
+        array[condition[0]] === array[condition[1]] &&
+        array[condition[0]] === array[condition[2]]
+      ) {
+        //setTimeout so alert doesn't fire before board renders final marker.
+        setTimeout(function () {
+          alert("Winner!");
+        }, 300);
+        return true;
+      } else if (!array.includes(" ")) {
+        setTimeout(function () {
+          alert("Draw!");
+        }, 300);
+        return true;
+      } else {
+        return false;
       }
     }
-    winConditions(0, 1, 2);
-    winConditions(3, 4, 5);
-    winConditions(6, 7, 8);
-    winConditions(0, 3, 6);
-    winConditions(1, 4, 7);
-    winConditions(2, 5, 8);
-    winConditions(0, 4, 8);
-    winConditions(2, 4, 6);
+
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    /* Exits loop when game is over to prevent further unnecessary checks 
+    and multiple "draw" alerts. */
+    winConditions.some((condition) => {
+      return isGameOver(condition);
+    });
   }
+
   return {
     checkWin,
-  }
+  };
 })();
 
 /* 
