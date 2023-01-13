@@ -37,7 +37,7 @@ font-family: 'Nunito', sans-serif;
   padding: 30px;
 }
 
-.btnContainer button {
+#resetBtn {
   width: 150px;
   height: 40px;
   border: 2px solid black;
@@ -48,12 +48,12 @@ font-family: 'Nunito', sans-serif;
   font-weight: 700;
 }
 
-.btnContainer button:hover {
+#resetBtn:hover {
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.712);
   cursor: pointer;
 }
 
-.btnContainer button:active {
+#resetBtn:active {
   background-color: rgb(196, 52, 201);
   transform: scale(0.95);
 }

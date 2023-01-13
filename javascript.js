@@ -28,13 +28,22 @@ const gameboardModule = (function () {
       const arrayIndex = Number(segment.id.replace("segment", "")) - 1;
       markers.splice(arrayIndex, 1, playerMarker);
 
-      gameModule.checkWin(markers);
+      gameModule.isGameOver(markers);
 
       playersModule.switchPlayers();
     } else {
       alert("This place is already taken, try another!");
     }
   }
+
+  const resetButton = document.getElementById("resetBtn");
+  resetButton.addEventListener("click", () => {
+    markers.forEach((marker, index) => {
+      markers[index] = " ";
+    });
+    renderBoard();
+  });
+
   return {
     markers,
   };
@@ -72,8 +81,8 @@ const playersModule = (function () {
 })();
 
 const gameModule = (function () {
-  function checkWin(array) {
-    function isGameOver(condition) {
+  function isGameOver(array) {
+    function checkForWin(condition) {
       if (
         array[condition[0]] !== " " &&
         array[condition[0]] === array[condition[1]] &&
@@ -82,11 +91,6 @@ const gameModule = (function () {
         //setTimeout so alert doesn't fire before board renders final marker.
         setTimeout(function () {
           alert("Winner!");
-        }, 300);
-        return true;
-      } else if (!array.includes(" ")) {
-        setTimeout(function () {
-          alert("Draw!");
         }, 300);
         return true;
       } else {
@@ -107,26 +111,24 @@ const gameModule = (function () {
 
     /* Exits loop when game is over to prevent further unnecessary checks 
     and multiple "draw" alerts. */
-    winConditions.some((condition) => {
-      return isGameOver(condition);
+    const gameOver = winConditions.some((condition) => {
+      return checkForWin(condition);
     });
+
+    function checkForDraw() {
+      if (!array.includes(" ")) {
+        setTimeout(function () {
+          alert("Draw!");
+        }, 300);
+      }
+    }
+    
+    if (gameOver === false) {
+      checkForDraw();
+    }
   }
 
   return {
-    checkWin,
+    isGameOver,
   };
 })();
-
-/* 
-What Each Module Does
-  gameboardModule
-    -gameboard array
-    -render function to display the array on the browser in correct places
-    -click handler loop for event listeners on segments
-    -makePlay function to update the array with the playmaker's marker and render it on browser
-  playersModule
-    -createPlayer function to create a player object with name, marker and shared makePlay method
-    -create the players, probably later on a button click with a name input
-  gameModule
-    -check for 3 in a row (winner) and announce winner, then reset board
-*/
