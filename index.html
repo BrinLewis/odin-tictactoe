@@ -9,20 +9,29 @@
   <script src="javascript.js" defer></script>
 </head>
 <body>
+  
   <div class="header">
     <h1>TIC-TAC-TOE</h1>
   </div>
   <div class="players">
     <div class="playerContainer turnIndicator visible">
       <p class="turnIndicator">Your turn!</p>
-      <h3>Player1</h3>
+      <h3 id="player1Name">Player1</h3>
       <h2>X</h2>
+      <div class="playerNameInputs hidden">
+        <label for="crosses"></label>
+        <input type="text" id="crosses" class="nameInput" value="Player1" maxlength="12">
+      </div>
     </div>
-    <p>Change Names</p>
+    <p class="changeNames">Change Names</p>
     <div class="playerContainer turnIndicator">
       <p class="turnIndicator">Your turn!</p>
-      <h3>Player2</h3>
+      <h3 id="player2Name">Player2</h3>
       <h2>O</h2>
+      <div class="playerNameInputs hidden">
+        <label for="noughts"></label>
+        <input type="text" id="noughts" class="nameInput" value="Player2">
+      </div>
     </div>
   </div>
   <div class="boardContainer">
@@ -35,7 +44,7 @@
     <div class="boardSegment" id="segment7"></div>
     <div class="boardSegment" id="segment8"></div>
     <div class="boardSegment" id="segment9"></div>
-  </div>
+      </div>
   <div class="btnContainer">
     <button type="button" id="resetBtn">RESET GAME</button>
   </div>

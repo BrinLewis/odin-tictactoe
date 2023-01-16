@@ -65,7 +65,7 @@ const playersModule = (function () {
     const turnIndicators = document.querySelectorAll(".turnIndicator");
 
     function switchPlayerTurn() {
-      turnIndicators.forEach(indicator => {
+      turnIndicators.forEach((indicator) => {
         indicator.classList.toggle("visible");
       });
     }
@@ -81,6 +81,32 @@ const playersModule = (function () {
 
   function getMarker() {
     return currentPlayer.marker;
+  }
+
+  const changeNames = document.querySelector(".changeNames");
+  const playerNameInputs = document.querySelectorAll(".playerNameInputs");
+  changeNames.addEventListener("click", () => {
+    playerNameInputs.forEach((input) => {
+      input.classList.toggle("hidden");
+    });
+    if (changeNames.textContent === "Change Names") {
+      changeNames.textContent = "Set Names";
+    } else {
+      changeNames.textContent = "Change Names";
+      updateNames();
+    }
+  });
+
+  const nameTextInput = document.querySelectorAll(".nameInput");
+  function updateNames() {
+    for (let i = 0; i < 2; i++) {
+      let playerName = document.getElementById(`player${i + 1}Name`);
+      let inputtedName = nameTextInput[i].value;
+      if (inputtedName !== "") {
+        playerName.textContent = inputtedName;
+        i === 0 ? (player1.name = inputtedName) : (player2.name = inputtedName);
+      }
+    }
   }
 
   return {
