@@ -17,12 +17,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .header {
   position: relative;
-  bottom: 30px;
+  bottom: 20px;
 }
 
 .header h1 {
@@ -37,25 +37,31 @@ body {
 }
 
 .playerContainer {
+  box-sizing: border-box;
   width: 100px;
   height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.visible {
-  border: 2px solid var(--pink);
+  border: 2px solid rgba(0, 0, 0, 0);
   border-radius: 15px;
   position: relative;
 }
 
-.visible p {
+.turnIndicator p {
   border: none;
   position: absolute;
   top: -20px;
-  color: var(--pink);
+  color: rgba(0, 0, 0, 0);
   font-weight: 900;
+}
+
+.visible {
+  border: 2px solid var(--pink);
+}
+
+.visible p {
+  color: var(--pink);
 }
 
 .playerContainer h3 {

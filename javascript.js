@@ -62,22 +62,26 @@ const playersModule = (function () {
   let currentPlayer = player1;
 
   function switchPlayers() {
+    const turnIndicators = document.querySelectorAll(".turnIndicator");
+
+    function switchPlayerTurn() {
+      turnIndicators.forEach(indicator => {
+        indicator.classList.toggle("visible");
+      });
+    }
+
     if (currentPlayer === player1) {
       currentPlayer = player2;
+      switchPlayerTurn();
     } else {
       currentPlayer = player1;
+      switchPlayerTurn();
     }
   }
 
   function getMarker() {
     return currentPlayer.marker;
   }
-
-  const playerContainer = document.querySelector(".playerContainer");
-  const yourTurn = document.createElement("p");
-  yourTurn.classList.add("visible");
-  yourTurn.textContent = "Your turn!"
-  playerContainer.appendChild(yourTurn);
 
   return {
     getMarker,
@@ -128,7 +132,7 @@ const gameModule = (function () {
         }, 300);
       }
     }
-    
+
     if (gameOver === false) {
       checkForDraw();
     }
