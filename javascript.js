@@ -57,8 +57,8 @@ const playersModule = (function () {
     };
   }
 
-  const player1 = createPlayer("mark", "X");
-  const player2 = createPlayer("john", "O");
+  const player1 = createPlayer("player1", "X");
+  const player2 = createPlayer("player2", "O");
   let currentPlayer = player1;
 
   function switchPlayers() {
@@ -72,6 +72,12 @@ const playersModule = (function () {
   function getMarker() {
     return currentPlayer.marker;
   }
+
+  const playerContainer = document.querySelector(".playerContainer");
+  const yourTurn = document.createElement("p");
+  yourTurn.classList.add("visible");
+  yourTurn.textContent = "Your turn!"
+  playerContainer.appendChild(yourTurn);
 
   return {
     getMarker,
