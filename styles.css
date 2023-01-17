@@ -12,6 +12,7 @@
 }
 
 body {
+  background-color: rgb(228, 228, 228);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -125,14 +126,14 @@ body {
 }
 
 .boardSegment {
-  background-color: white;
-width: var(--segmentSize);
-height: var(--segmentSize);
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: 5rem;
-font-family: 'Nunito', sans-serif;
+  background-color: rgb(240, 240, 240);
+  width: var(--segmentSize);
+  height: var(--segmentSize);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  font-family: 'Nunito', sans-serif;
 }
 
 .gameOverScreen {
