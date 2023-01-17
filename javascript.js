@@ -36,17 +36,24 @@ const gameboardModule = (function () {
     }
   }
 
-  const resetButton = document.getElementById("resetBtn");
-  resetButton.addEventListener("click", () => {
+  function resetBoard() {
     markers.forEach((marker, index) => {
       markers[index] = " ";
     });
     renderBoard();
+  }
+
+  const resetBtn = document.getElementById("resetBtn");
+  resetBtn.addEventListener("click", () => {
+    resetBoard();
+    gameModule.gameOverScreen.classList.add("hidden");
   });
 
-  return {
-    markers,
-  };
+  const playAgainBtn = document.getElementById("playAgainBtn");
+  playAgainBtn.addEventListener("click", () => {
+    resetBoard();
+    gameModule.gameOverScreen.classList.toggle("hidden");
+  });
 })();
 
 const playersModule = (function () {
@@ -83,6 +90,10 @@ const playersModule = (function () {
     return currentPlayer.marker;
   }
 
+  function getName() {
+    return currentPlayer.name;
+  }
+
   const changeNames = document.querySelector(".changeNames");
   const playerNameInputs = document.querySelectorAll(".playerNameInputs");
   changeNames.addEventListener("click", () => {
@@ -111,12 +122,15 @@ const playersModule = (function () {
 
   return {
     getMarker,
+    getName,
     switchPlayers,
-    currentPlayer,
   };
 })();
 
 const gameModule = (function () {
+  const gameResults = document.querySelector(".gameOverScreen p");
+  const gameOverScreen = document.querySelector(".gameOverScreen");
+
   function isGameOver(array) {
     function checkForWin(condition) {
       if (
@@ -124,10 +138,9 @@ const gameModule = (function () {
         array[condition[0]] === array[condition[1]] &&
         array[condition[0]] === array[condition[2]]
       ) {
-        //setTimeout so alert doesn't fire before board renders final marker.
-        setTimeout(function () {
-          alert("Winner!");
-        }, 300);
+        let winner = playersModule.getName();
+        gameResults.textContent = `${winner} wins!`;
+        gameOverScreen.classList.toggle("hidden");
         return true;
       } else {
         return false;
@@ -153,9 +166,8 @@ const gameModule = (function () {
 
     function checkForDraw() {
       if (!array.includes(" ")) {
-        setTimeout(function () {
-          alert("Draw!");
-        }, 300);
+        gameResults.textContent = `It's a draw!`;
+        gameOverScreen.classList.toggle("hidden");
       }
     }
 
@@ -166,5 +178,6 @@ const gameModule = (function () {
 
   return {
     isGameOver,
+    gameOverScreen,
   };
 })();

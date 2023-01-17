@@ -135,6 +135,47 @@ font-size: 5rem;
 font-family: 'Nunito', sans-serif;
 }
 
+.gameOverScreen {
+  height: 102%;
+  width: 102%;
+  position: absolute;
+  top: -1%;
+  left: -1%;
+  background-color: rgba(255, 255, 255, 0.781);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameOverScreen h1 {
+  font-size: 3rem;
+}
+
+.gameOverScreen p {
+  font-size: 2rem;
+}
+
+#playAgainBtn {
+  margin-top: 10px;
+  box-shadow: 0 0 10px 1px var(--pink);
+  border: none;
+  border-radius: 15px;
+  width: 120px;
+  height: 30px;
+  font-size: 1.2rem;
+}
+
+#playAgainBtn:hover {
+  cursor: pointer;
+  box-shadow: 0 0 15px 1px var(--pink);
+}
+
+#playAgainBtn:active {
+  background-color: rgb(216, 216, 216);
+}
+
 #resetBtn {
   width: 150px;
   height: 40px;
@@ -153,15 +194,4 @@ font-family: 'Nunito', sans-serif;
 #resetBtn:active {
   background-color: rgb(196, 52, 201);
   transform: scale(0.95);
-}
-
-.gameOver {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  background-color: rgba(167, 167, 167, 0.671);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
