@@ -37,11 +37,11 @@ body {
 }
 
 .changeNames {
-  box-sizing: border-box;
-  cursor: pointer;
   width: 110px;
+  height: 1.8em;
+  cursor: pointer;
   align-self: center;
-  text-align: center;
+  border: none;
   border-radius: 6px;
   box-shadow: 0 0 10px 1px var(--pink);
 }
@@ -179,19 +179,19 @@ font-family: 'Nunito', sans-serif;
 #resetBtn {
   width: 150px;
   height: 40px;
-  border: 2px solid black;
+  border: none;
   border-radius: 10px;
-  background-color: var(--pink);
+  box-shadow: 0 0 10px 2px var(--pink);
   font-size: 1.3rem;
   font-weight: 700;
 }
 
 #resetBtn:hover {
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.712);
+  box-shadow: 0 0 15px 2px var(--pink);
   cursor: pointer;
 }
 
 #resetBtn:active {
-  background-color: rgb(196, 52, 201);
+  background-color: rgb(216, 216, 216);
   transform: scale(0.95);
 }
